@@ -84,37 +84,57 @@ def test_doctor_tree():
     tree = DoctorTree()
     tree.root = DoctorNode("Dr. Croft")
 
-    # Valid insertions
+   
     tree.insert("Dr. Croft", "Dr. Goldsmith", "right")
     tree.insert("Dr. Croft", "Dr. Phan", "left")
     tree.insert("Dr. Phan", "Dr. Carson", "right")
     tree.insert("Dr. Phan", "Dr. Morgan", "left")
 
-    # Traversal checks
+    
     assert tree.preorder(tree.root) == ["Dr. Croft", "Dr. Phan", "Dr. Morgan", "Dr. Carson", "Dr. Goldsmith"]
     assert tree.inorder(tree.root) == ["Dr. Morgan", "Dr. Phan", "Dr. Carson", "Dr. Croft", "Dr. Goldsmith"]
     assert tree.postorder(tree.root) == ["Dr. Morgan", "Dr. Carson", "Dr. Phan", "Dr. Goldsmith", "Dr. Croft"]
     print("✅ Traversal methods passed.")
 
-    # Edge case: inserting under non-existent parent
+   
     try:
         tree.insert("Dr. Who", "Dr. Strange", "left")
     except ValueError as e:
         print(f"✅ Caught expected error: {e}")
 
-    # Edge case: inserting with invalid side
+    
     try:
         tree.insert("Dr. Croft", "Dr. House", "middle")
     except ValueError as e:
         print(f"✅ Caught expected error: {e}")
 
-    # Edge case: inserting where child already exists
+   
     try:
         tree.insert("Dr. Croft", "Dr. SomeoneElse", "left")
     except ValueError as e:
         print(f"✅ Caught expected error: {e}")
 
 
-# Run tests if this file is executed directly
+
 if __name__ == "__main__":
     test_doctor_tree()
+
+
+   # A tree is appropriate for modeling the doctor structure because In a hospital or medical environment, doctors are often organized in a hierarchical manner.
+# This allows for efficient organization and searching for information. Each node in the tree can actually represent a doctor or a position, and the edges show supervisory or functional relationships. 
+# Trees are appropriate because they model hierarchical relationships effectively. They also support organized and efficient searches.
+#Finally they mirror real-world medical reasoning and structure.
+
+
+
+# A software engineer might use preorder when you are saving a tree to your disk, building a UI from a hierarchical config, and when it comes to copying or serializing the tree structures. 
+# Preorder matters because preorder captures the structure from the top down, it is also very useful when it comes to reconstruction.
+# The engineer might use inorder when they want to retrieve data in ascending order from a BST, the inorder helps when you want your sorted list to be displayed.
+# The in order matters because it respects the BST property which makes it ideal for ordered data extraction.
+# The engineer will use postorder when it comes to deleting or evaluating trees from the bottom up, using postorder you are safely deleting a tree and freeing up memory.
+
+# Heaps power real-time systems like emergency intake by enabling fast, dynamic prioritization-ensuring the most critical tasks or patients are handled first.
+# In emergency scenarios, time and priority are everything. Heaps, especially priority queues implemented with binary heaps offer an efficient way to manage constantly changing urgency levels.
+  #Heaps work so well because as new tasks or patients arrive, heaps maintain order without full re-sorting.
+   # Heaps also work so well because of scalability, finally heaps have Real-time responsiveness, this supports systems where decisions must be made instantly.
+
